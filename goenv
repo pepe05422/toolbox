@@ -1,0 +1,12 @@
+#!/bin/bash
+
+case $1 in
+    update)
+        go_version=$(curl -\# "https://go.dev/dl/?mode=json" | jq -r '.[].version' | fzf) &&
+        go install golang.org/dl/$go_version@latest && 
+        $($go_version download)
+        ;;
+    *)
+        ls /home/david/go/bin/go[1-9]* | fzf | xargs -I {} sudo ln -sf {} /usr/lib/go/bin/go
+        ;;
+esac
