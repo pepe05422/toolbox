@@ -1,0 +1,4 @@
+#!/bin/bash
+
+regex='s/\\n/\n\n/g'
+tail -f /var/log/apache2/error.log | sed -e $regex
